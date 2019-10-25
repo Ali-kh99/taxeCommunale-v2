@@ -10,16 +10,16 @@ package com.fstg.Taxecommunale.bean;
  * @author alikhyatti
  */
 public class Secteur {
-    private int id;
+    private long id;
 	private String libelle;
 	private Commune commune;
 
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
