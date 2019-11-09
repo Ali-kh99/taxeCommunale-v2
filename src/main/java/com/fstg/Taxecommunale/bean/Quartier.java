@@ -5,15 +5,28 @@
  */
 package com.fstg.Taxecommunale.bean;
 
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 /**
  *
  * @author alikhyatti
  */
-public class Quartier {
-    private int id;
-	private String libelle;
-	private Secteur secteur;
+@Entity
+public class Quartier{
 
+    
+    @Id
+      private long id;
+    	private String libelle;
+    @ManyToOne
+	private Secteur secteur;
+    @OneToMany(mappedBy = "quartier")
+     private List<Rue> rues;
+    
 	public Secteur getSecteur() {
 		return secteur;
 	}
@@ -22,11 +35,11 @@ public class Quartier {
 		this.secteur = secteur;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

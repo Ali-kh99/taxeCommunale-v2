@@ -5,20 +5,29 @@
  */
 package com.fstg.Taxecommunale.bean;
 //import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 /**
  *
  * @author alikhyatti
  */
-public class Proprietaire {
-    private int id;
+@Entity
+public class Proprietaire implements Serializable{
+    @Id
+    private long id;
 	private String nom;
 	private String prenom;
 	private String cin;
 	private String eMail;
 	private String telephone;
 	private String raisonSocial;
-	private List <Terrain> terrains ;
+   
+    
+    @OneToMany(mappedBy = "proprietaire")
+	private List <Terrain> terrains;
 
 	public String geteMail() {
 		return eMail;
@@ -50,11 +59,11 @@ public class Proprietaire {
 
 	private String adresse;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

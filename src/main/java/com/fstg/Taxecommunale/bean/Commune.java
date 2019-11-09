@@ -5,18 +5,29 @@
  */
 package com.fstg.Taxecommunale.bean;
 
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 /**
  *
  * @author alikhyatti
  */
-public class Commune {
-    private int id;
+@Entity
+public class Commune implements Serializable {
+
+    @OneToMany(mappedBy = "commune")
+    private List<Secteur> secteurs;
+    @Id
+    private long id;
 	private String lebelle;
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getLebelle() {

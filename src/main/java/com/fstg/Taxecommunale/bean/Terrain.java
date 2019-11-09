@@ -5,22 +5,53 @@
  */
 package com.fstg.Taxecommunale.bean;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 /**
  *
  * @author alikhyatti
  */
-public class Terrain {
-    private int id;
-	private BigDecimal surface = BigDecimal.ZERO;
+@Entity
+public class Terrain implements Serializable {
+    
+    @Id
+        private long id;
+    private String reference;
+	private BigDecimal surface ;
+    
+    @ManyToOne
 	private Proprietaire proprietaire;
+    @OneToOne
 	private Categorie categorie;
+    @OneToOne
 	private Rue rue;
-	private List<TaxeAnnuelle> taxesAnnuelle= new ArrayList<TaxeAnnuelle>();//???????
+    @OneToMany(mappedBy = "terrain")
+    private List<TaxeAnnuelle> taxeAnnuelles;
 
-	
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public List<TaxeAnnuelle> getTaxeAnnuelles() {
+        return Collections.unmodifiableList(taxeAnnuelles);
+    }
+
+    public void setTaxeAnnuelles(List<TaxeAnnuelle> taxeAnnuelles) {
+        this.taxeAnnuelles = taxeAnnuelles;
+    }
+   
+
 
 	public Terrain() {
 		super();
@@ -31,23 +62,15 @@ public class Terrain {
 		return rue;
 	}
 
-	public List<TaxeAnnuelle> getTaxesAnnuelle() {
-		return taxesAnnuelle;
-	}
-
-	public void setTaxesAnnuelle(List<TaxeAnnuelle> taxesAnnuelle) {
-		this.taxesAnnuelle = taxesAnnuelle;
-	}
-
 	public void setRue(Rue rue) {
 		this.rue = rue;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

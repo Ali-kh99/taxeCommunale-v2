@@ -5,13 +5,21 @@
  */
 package com.fstg.Taxecommunale.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 /**
  *
  * @author alikhyatti
  */
-public class Rue {
-    private int id;
+@Entity
+public class Rue{
+
+    @Id
+        private Long id;
 	private String libelle;
+    @ManyToOne
 	private Quartier quartier;
 
 	public Quartier getQuartier() {
@@ -23,11 +31,11 @@ public class Rue {
 	}
 
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

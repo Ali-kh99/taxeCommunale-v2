@@ -5,27 +5,34 @@
  */
 package com.fstg.Taxecommunale.bean;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author alikhyatti
  */
-public class Categorie {
-    	private int id;
-	private String nomCategorie;
+@Entity
+public class Categorie implements Serializable {
 
-	public int getId() {
+    @Id
+    	private long id;
+	private String libelle;
+        
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public String getNomCategorie() {
-		return nomCategorie;
+	public String getLibelle() {
+		return libelle;
 	}
 
-	public void setNomCategorie(String nomCategorie) {
-		this.nomCategorie = nomCategorie;
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 }

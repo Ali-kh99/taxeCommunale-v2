@@ -4,27 +4,57 @@
  * and open the template in the editor.
  */
 package com.fstg.Taxecommunale.bean;
+import java.io.Serializable;
 import java.math.BigDecimal;
-
+import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 /**
  *
  * @author alikhyatti
  */
-public class TauxTaxe {
-    private int id;
-	private Categorie categorie;
+@Entity
+public class TauxTaxe implements Serializable{
+    @Id
+    private long id;
+    @OneToOne
+   	private Categorie categorie;
 	private BigDecimal taxe;
+    @Temporal(TemporalType.DATE)
+    private Date dateDebut;
+    @Temporal(TemporalType.DATE)
+    private Date dateFin;
 
-	
+    
+
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }
+    
 	public TauxTaxe() {
 		super();
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

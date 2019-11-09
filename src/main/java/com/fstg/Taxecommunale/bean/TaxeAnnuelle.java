@@ -4,43 +4,64 @@
  * and open the template in the editor.
  */
 package com.fstg.Taxecommunale.bean;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+
 /**
  *
  * @author alikhyatti
  */
-public class TaxeAnnuelle {
-    private int id;
-	private int annee;
-//	private TauxRetardTaxe tauxRetardTaxe;
-	private BigDecimal totalTaxe;
-	private Proprietaire proprietaire;
-	private Terrain terrain;
-	private Date datePaiment;
+@Entity
+public class TaxeAnnuelle implements Serializable {
 
-	public int getId() {
-		return id;
-	}
+    @Id
+    private long id;
+    private int annee;
+    private TauxTaxe tauxTaxe;
+    @ManyToOne
+    private Terrain terrain;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date datePaiment;
+    private BigDecimal montant;
+    private Proprietaire proprietaire;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public Terrain getTerrain() {
+        return terrain;
+    }
 
-	public int getAnnee() {
-		return annee;
-	}
+    public void setTerrain(Terrain terrain) {
+        this.terrain = terrain;
+    }
 
-	public void setAnnee(int annee) {
-		this.annee = annee;
-	}
+    public Date getDatePaiment() {
+        return datePaiment;
+    }
 
+    public void setDatePaiment(Date datePaiment) {
+        this.datePaiment = datePaiment;
+    }
 
-	public BigDecimal getTotalTaxe() {
-		return totalTaxe;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setTotalTaxe(BigDecimal totalTaxe) {
-		this.totalTaxe = totalTaxe;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(int annee) {
+        this.annee = annee;
+    }
+
 }
